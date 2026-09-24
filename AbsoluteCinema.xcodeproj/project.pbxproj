@@ -1,0 +1,546 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 110;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		B184160430657D120091D773 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B18415EC30657D110091D773 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B18415F330657D110091D773;
+			remoteInfo = AbsoluteCinema;
+		};
+		B184160E30657D120091D773 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B18415EC30657D110091D773 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B18415F330657D110091D773;
+			remoteInfo = AbsoluteCinema;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B18415F430657D110091D773 /* AbsoluteCinema.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AbsoluteCinema.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B184160330657D120091D773 /* AbsoluteCinemaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AbsoluteCinemaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B184160D30657D120091D773 /* AbsoluteCinemaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AbsoluteCinemaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		B18415F630657D110091D773 /* AbsoluteCinema */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AbsoluteCinema;
+			sourceTree = "<group>";
+		};
+		B184160630657D120091D773 /* AbsoluteCinemaTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AbsoluteCinemaTests;
+			sourceTree = "<group>";
+		};
+		B184161030657D120091D773 /* AbsoluteCinemaUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AbsoluteCinemaUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B18415F130657D110091D773 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		B184160030657D120091D773 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+		B184160A30657D120091D773 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B18415EB30657D110091D773 = {
+			isa = PBXGroup;
+			children = (
+				B18415F630657D110091D773 /* AbsoluteCinema */,
+				B184160630657D120091D773 /* AbsoluteCinemaTests */,
+				B184161030657D120091D773 /* AbsoluteCinemaUITests */,
+				B18415F530657D110091D773 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B18415F530657D110091D773 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B18415F430657D110091D773 /* AbsoluteCinema.app */,
+				B184160330657D120091D773 /* AbsoluteCinemaTests.xctest */,
+				B184160D30657D120091D773 /* AbsoluteCinemaUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B18415F330657D110091D773 /* AbsoluteCinema */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B184161530657D120091D773 /* Build configuration list for PBXNativeTarget "AbsoluteCinema" */;
+			buildPhases = (
+				B18415F030657D110091D773 /* Sources */,
+				B18415F130657D110091D773 /* Frameworks */,
+				B18415F230657D110091D773 /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				B18415F630657D110091D773 /* AbsoluteCinema */,
+			);
+			name = AbsoluteCinema;
+			productName = AbsoluteCinema;
+			productReference = B18415F430657D110091D773 /* AbsoluteCinema.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B184160230657D120091D773 /* AbsoluteCinemaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B184161830657D120091D773 /* Build configuration list for PBXNativeTarget "AbsoluteCinemaTests" */;
+			buildPhases = (
+				B18415FF30657D120091D773 /* Sources */,
+				B184160030657D120091D773 /* Frameworks */,
+				B184160130657D120091D773 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B184160530657D120091D773 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				B184160630657D120091D773 /* AbsoluteCinemaTests */,
+			);
+			name = AbsoluteCinemaTests;
+			productName = AbsoluteCinemaTests;
+			productReference = B184160330657D120091D773 /* AbsoluteCinemaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B184160C30657D120091D773 /* AbsoluteCinemaUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B184161B30657D120091D773 /* Build configuration list for PBXNativeTarget "AbsoluteCinemaUITests" */;
+			buildPhases = (
+				B184160930657D120091D773 /* Sources */,
+				B184160A30657D120091D773 /* Frameworks */,
+				B184160B30657D120091D773 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B184160F30657D120091D773 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				B184161030657D120091D773 /* AbsoluteCinemaUITests */,
+			);
+			name = AbsoluteCinemaUITests;
+			productName = AbsoluteCinemaUITests;
+			productReference = B184160D30657D120091D773 /* AbsoluteCinemaUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B18415EC30657D110091D773 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2700;
+				LastUpgradeCheck = 2700;
+				TargetAttributes = {
+					B18415F330657D110091D773 = {
+						CreatedOnToolsVersion = 27.0;
+					};
+					B184160230657D120091D773 = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = B18415F330657D110091D773;
+					};
+					B184160C30657D120091D773 = {
+						CreatedOnToolsVersion = 27.0;
+						TestTargetID = B18415F330657D110091D773;
+					};
+				};
+			};
+			buildConfigurationList = B18415EF30657D110091D773 /* Build configuration list for PBXProject "AbsoluteCinema" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B18415EB30657D110091D773;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = B18415F530657D110091D773 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B18415F330657D110091D773 /* AbsoluteCinema */,
+				B184160230657D120091D773 /* AbsoluteCinemaTests */,
+				B184160C30657D120091D773 /* AbsoluteCinemaUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B18415F230657D110091D773 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		B184160130657D120091D773 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+		B184160B30657D120091D773 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B18415F030657D110091D773 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		B18415FF30657D120091D773 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+		B184160930657D120091D773 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B184160530657D120091D773 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B18415F330657D110091D773 /* AbsoluteCinema */;
+			targetProxy = B184160430657D120091D773 /* PBXContainerItemProxy */;
+		};
+		B184160F30657D120091D773 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B18415F330657D110091D773 /* AbsoluteCinema */;
+			targetProxy = B184160E30657D120091D773 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		B184161330657D120091D773 /* Debug configuration for PBXProject "AbsoluteCinema" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B184161430657D120091D773 /* Release configuration for PBXProject "AbsoluteCinema" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B184161630657D120091D773 /* Debug configuration for PBXNativeTarget "AbsoluteCinema" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ITMO-Masters.AbsoluteCinema";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B184161730657D120091D773 /* Release configuration for PBXNativeTarget "AbsoluteCinema" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ITMO-Masters.AbsoluteCinema";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B184161930657D120091D773 /* Debug configuration for PBXNativeTarget "AbsoluteCinemaTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ITMO-Masters.AbsoluteCinemaTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AbsoluteCinema.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AbsoluteCinema";
+			};
+			name = Debug;
+		};
+		B184161A30657D120091D773 /* Release configuration for PBXNativeTarget "AbsoluteCinemaTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ITMO-Masters.AbsoluteCinemaTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AbsoluteCinema.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AbsoluteCinema";
+			};
+			name = Release;
+		};
+		B184161C30657D120091D773 /* Debug configuration for PBXNativeTarget "AbsoluteCinemaUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ITMO-Masters.AbsoluteCinemaUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AbsoluteCinema;
+			};
+			name = Debug;
+		};
+		B184161D30657D120091D773 /* Release configuration for PBXNativeTarget "AbsoluteCinemaUITests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ITMO-Masters.AbsoluteCinemaUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AbsoluteCinema;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B18415EF30657D110091D773 /* Build configuration list for PBXProject "AbsoluteCinema" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B184161330657D120091D773 /* Debug configuration for PBXProject "AbsoluteCinema" */,
+				B184161430657D120091D773 /* Release configuration for PBXProject "AbsoluteCinema" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		B184161530657D120091D773 /* Build configuration list for PBXNativeTarget "AbsoluteCinema" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B184161630657D120091D773 /* Debug configuration for PBXNativeTarget "AbsoluteCinema" */,
+				B184161730657D120091D773 /* Release configuration for PBXNativeTarget "AbsoluteCinema" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		B184161830657D120091D773 /* Build configuration list for PBXNativeTarget "AbsoluteCinemaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B184161930657D120091D773 /* Debug configuration for PBXNativeTarget "AbsoluteCinemaTests" */,
+				B184161A30657D120091D773 /* Release configuration for PBXNativeTarget "AbsoluteCinemaTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		B184161B30657D120091D773 /* Build configuration list for PBXNativeTarget "AbsoluteCinemaUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B184161C30657D120091D773 /* Debug configuration for PBXNativeTarget "AbsoluteCinemaUITests" */,
+				B184161D30657D120091D773 /* Release configuration for PBXNativeTarget "AbsoluteCinemaUITests" */,
+			);
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B18415EC30657D110091D773 /* Project object */;
+	validationLevel = 1;
+}
