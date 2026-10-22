@@ -33,7 +33,7 @@
         C00100000000000000000001 /* Exceptions for AbsoluteCinema */ = {
             isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
             membershipExceptions = (
-                Configuration/TMDBConfig.plist,
+                Configuration/TMDBConfig.example.plist,
             );
             target = B18415F330657D110091D773 /* AbsoluteCinema */;
         };

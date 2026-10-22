@@ -14,11 +14,16 @@ struct RatingEditorView: View {
                             Text("\(rating) из 10").tag(rating)
                         }
                     }
+                    .pickerStyle(.menu)
+                    .accessibilityIdentifier("rating.value")
+                    .accessibilityValue(viewModel.draftRating == 0
+                                        ? "Не выбрана" : "\(viewModel.draftRating) из 10")
                 }
                 Section("Комментарий (необязательно)") {
                     TextEditor(text: $viewModel.comment)
                         .frame(minHeight: 100)
                         .accessibilityLabel("Мой комментарий о фильме")
+                        .accessibilityIdentifier("rating.comment")
                 }
                 if let message = viewModel.storageError {
                     Section {
@@ -30,9 +35,12 @@ struct RatingEditorView: View {
                         if viewModel.save() { dismiss() }
                     }
                     .disabled(!viewModel.canSave)
+                    .accessibilityIdentifier("rating.save")
                     Button("Отмена", role: .cancel) { dismiss() }
+                        .accessibilityIdentifier("rating.cancel")
                 }
             }
+            .scrollDismissesKeyboard(.interactively)
             .navigationTitle("Оценить фильм")
             .navigationBarTitleDisplayMode(.inline)
         }

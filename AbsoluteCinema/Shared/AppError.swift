@@ -2,8 +2,12 @@ import Foundation
 
 enum AppError: LocalizedError {
     case invalidRating
+    case incompleteMovie
 
     var errorDescription: String? {
-        "Оценка должна быть от 1 до 10."
+        switch self {
+        case .invalidRating: "Оценка должна быть от 1 до 10."
+        case .incompleteMovie: "Дождитесь загрузки сведений о фильме."
+        }
     }
 }

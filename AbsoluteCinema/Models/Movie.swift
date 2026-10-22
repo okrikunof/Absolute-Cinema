@@ -11,4 +11,7 @@ struct Movie: Identifiable, Hashable, Sendable {
     let rating: Double
     let voteCount: Int
     let posterName: String?
+    var posterPath: String? = nil
+    // Сохранённые фильмы и моки содержат полную карточку; результаты поиска — нет.
+    var hasDetails = true
 }

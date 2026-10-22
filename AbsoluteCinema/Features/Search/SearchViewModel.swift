@@ -4,19 +4,61 @@ import Observation
 @MainActor
 @Observable
 final class SearchViewModel {
-    var query = ""
-    private let allMovies: [Movie]
+    var query = "" {
+        didSet {
+            if query != oldValue { queryChanged() }
+        }
+    }
+    private(set) var movies: [Movie] = []
+    private(set) var isLoading = false
+    private(set) var hasSearched = false
+    private(set) var errorMessage: String?
+    @ObservationIgnored private var searchTask: Task<Void, Never>?
+    private let client: TMDBClient
 
-    init(movies: [Movie] = MockMovies.movies) {
-        allMovies = movies
+    init(client: TMDBClient) {
+        self.client = client
     }
 
-    var movies: [Movie] {
+    var canSearch: Bool {
+        !query.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+
+    func search() {
+        cancelLoading()
         let text = query.trimmingCharacters(in: .whitespacesAndNewlines)
-        if text.isEmpty { return allMovies }
-        return allMovies.filter {
-            $0.title.localizedCaseInsensitiveContains(text)
-                || $0.originalTitle.localizedCaseInsensitiveContains(text)
+        movies = []
+        errorMessage = nil
+        hasSearched = !text.isEmpty
+        guard hasSearched else { return }
+        isLoading = true
+        searchTask = Task {
+            do {
+                let loaded = try await client.searchMovies(query: text)
+                // Отменённый запрос не должен заменять результаты нового поиска.
+                try Task.checkCancellation()
+                movies = loaded
+                isLoading = false
+            } catch {
+                guard !Task.isCancelled else { return }
+                isLoading = false
+                errorMessage = (error as? TMDBError)?.errorDescription
+                    ?? "Не удалось загрузить фильмы. Попробуйте ещё раз."
+            }
         }
+    }
+
+    private func queryChanged() {
+        cancelLoading()
+        movies = []
+        errorMessage = nil
+        hasSearched = false
+    }
+
+    func cancelLoading() {
+        searchTask?.cancel()
+        searchTask = nil
+        if isLoading { hasSearched = false }
+        isLoading = false
     }
 }

@@ -50,6 +50,7 @@ final class RatingRepository {
     // для одного фильма хранится только одна запись
     func save(movie: Movie, rating: Int, comment: String) throws -> SavedRating {
         guard (1...10).contains(rating) else { throw AppError.invalidRating }
+        guard movie.hasDetails else { throw AppError.incompleteMovie }
         let entry: RatedMovie
         if let existing = try self.entry(for: movie.id) {
             entry = existing

@@ -33,6 +33,7 @@ struct RatingsView: View {
                     NavigationLink(value: entry.movie) {
                         RatedMovieRow(entry: entry)
                     }
+                    .accessibilityIdentifier("ratings.movie.\(entry.movie.id)")
                     .listRowBackground(Color("Background"))
                     .swipeActions {
                         Button("Убрать оценку", role: .destructive) { viewModel.remove(entry) }
@@ -57,7 +58,8 @@ private struct RatedMovieRow: View {
 
     var body: some View {
         HStack(spacing: 12) {
-            MoviePoster(name: entry.movie.posterName, pixelSize: 270)
+            MoviePoster(name: entry.movie.posterName, posterPath: entry.movie.posterPath,
+                        pixelSize: 270)
                 .frame(width: 60, height: 90)
 
             VStack(alignment: .leading, spacing: 6) {

@@ -13,6 +13,7 @@ final class RatedMovie {
     var tmdbRating: Double
     var voteCount: Int
     var posterName: String?
+    var posterPath: String?
     var userRating: Int
     var comment: String
     var ratedAt: Date
@@ -28,6 +29,7 @@ final class RatedMovie {
         tmdbRating = movie.rating
         voteCount = movie.voteCount
         posterName = movie.posterName
+        posterPath = movie.posterPath
         userRating = rating
         self.comment = comment
         self.ratedAt = ratedAt
@@ -46,7 +48,8 @@ final class RatedMovie {
                 genres: genres,
                 rating: tmdbRating,
                 voteCount: voteCount,
-                posterName: posterName
+                posterName: posterName,
+                posterPath: posterPath
             ),
             rating: userRating,
             comment: comment,
@@ -64,5 +67,6 @@ final class RatedMovie {
         tmdbRating = movie.rating
         voteCount = movie.voteCount
         posterName = movie.posterName ?? posterName
+        posterPath = movie.posterPath ?? posterPath
     }
 }

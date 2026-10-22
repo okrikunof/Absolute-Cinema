@@ -13,6 +13,7 @@ final class WatchlistMovie {
     var tmdbRating: Double
     var voteCount: Int
     var posterName: String?
+    var posterPath: String?
     var addedAt: Date
 
     init(movie: Movie) {
@@ -26,6 +27,7 @@ final class WatchlistMovie {
         tmdbRating = movie.rating
         voteCount = movie.voteCount
         posterName = movie.posterName
+        posterPath = movie.posterPath
         addedAt = Date()
     }
 
@@ -33,6 +35,7 @@ final class WatchlistMovie {
     var movie: Movie {
         Movie(id: movieID, title: title, originalTitle: originalTitle,
               year: year, runtime: runtime, overview: overview, genres: genres,
-              rating: tmdbRating, voteCount: voteCount, posterName: posterName)
+              rating: tmdbRating, voteCount: voteCount, posterName: posterName,
+              posterPath: posterPath)
     }
 }
