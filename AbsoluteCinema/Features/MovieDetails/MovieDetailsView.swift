@@ -121,10 +121,10 @@ struct MovieDetailsView: View {
         .navigationBarBackButtonHidden(true)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
-                Button(action: { dismiss() }) {
+                Button(action: { dismiss() }, label: {
                     Image(systemName: "chevron.left")
                         .frame(minWidth: 44, minHeight: 44)
-                }
+                })
                 .accessibilityLabel("Назад")
             }
         }

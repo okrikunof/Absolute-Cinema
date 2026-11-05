@@ -14,23 +14,27 @@ struct RatingEditorView: View {
                         Text("Ваша оценка").font(.headline)
                         LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 5), spacing: 10) {
                             ForEach(1...10, id: \.self) { rating in
+                                let isSelected = viewModel.draftRating == rating
+                                let ratingColor = RatingColors.color(for: rating)
                                 Button {
                                     viewModel.draftRating = rating
                                 } label: {
                                     Text("\(rating)")
                                         .font(.headline)
                                         .frame(maxWidth: .infinity, minHeight: 48)
-                                        .foregroundStyle(viewModel.draftRating == rating ? Color("Background") : Color("PrimaryText"))
-                                        .background(viewModel.draftRating == rating ? RatingColors.color(for: rating) : Color("Surface"),
-                                                    in: RoundedRectangle(cornerRadius: 12))
+                                        .foregroundStyle(isSelected ? Color("Background") : Color("PrimaryText"))
+                                        .background(
+                                            isSelected ? ratingColor : Color("Surface"),
+                                            in: RoundedRectangle(cornerRadius: 12)
+                                        )
                                         .overlay {
                                             RoundedRectangle(cornerRadius: 12)
-                                                .strokeBorder(RatingColors.color(for: rating), lineWidth: viewModel.draftRating == rating ? 2 : 0)
+                                                .strokeBorder(ratingColor, lineWidth: isSelected ? 2 : 0)
                                         }
                                 }
                                 .buttonStyle(.plain)
                                 .accessibilityLabel("\(rating) из 10")
-                                .accessibilityAddTraits(viewModel.draftRating == rating ? .isSelected : [])
+                                .accessibilityAddTraits(isSelected ? .isSelected : [])
                                 .accessibilityIdentifier("rating.value.\(rating)")
                             }
                         }

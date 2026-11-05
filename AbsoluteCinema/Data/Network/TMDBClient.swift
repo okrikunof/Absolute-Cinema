@@ -99,6 +99,46 @@ actor TMDBClient {
         queryItems: [URLQueryItem] = [], body: Data? = nil
     ) async throws -> Response {
         try Task.checkCancellation()
+        let urlRequest = try makeURLRequest(path: path, method: method, queryItems: queryItems, body: body)
+
+        do {
+            let (data, response) = try await session.data(for: urlRequest)
+            try Task.checkCancellation()
+            try await validateResponse(response, data: data)
+            return try await JSONParser.decode(Response.self, from: data)
+        } catch let error as URLError {
+            if error.code == .cancelled { throw CancellationError() }
+            if error.code == .timedOut { throw TMDBError.timeout }
+            throw TMDBError.connection
+        } catch is DecodingError {
+            throw TMDBError.invalidResponse
+        }
+    }
+
+    private func validateResponse(_ response: URLResponse, data: Data) async throws {
+        guard let response = response as? HTTPURLResponse else {
+            throw TMDBError.invalidResponse
+        }
+        if !(200..<300).contains(response.statusCode) {
+            let failure = try? await JSONParser.decode(TMDBStatusResponse.self, from: data)
+            try Task.checkCancellation()
+            if let failure, [17, 37].contains(failure.statusCode) {
+                throw TMDBError.guestSessionExpired
+            }
+            switch response.statusCode {
+            case 401, 403: throw TMDBError.unauthorized
+            case 404: throw TMDBError.notFound
+            case 400, 422: throw TMDBError.invalidRequest
+            case 429: throw TMDBError.tooManyRequests
+            default: throw TMDBError.unavailable
+            }
+        }
+    }
+
+    private func makeURLRequest(
+        path: String, method: Method,
+        queryItems: [URLQueryItem], body: Data?
+    ) throws -> URLRequest {
         let configuration = try configurationOverride ?? TMDBConfiguration.load()
         var components = URLComponents()
         components.scheme = "https"
@@ -122,34 +162,6 @@ actor TMDBClient {
         if let token {
             urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         }
-
-        do {
-            let (data, response) = try await session.data(for: urlRequest)
-            try Task.checkCancellation()
-            guard let response = response as? HTTPURLResponse else {
-                throw TMDBError.invalidResponse
-            }
-            if !(200..<300).contains(response.statusCode) {
-                let failure = try? await JSONParser.decode(TMDBStatusResponse.self, from: data)
-                try Task.checkCancellation()
-                if let failure, [17, 37].contains(failure.statusCode) {
-                    throw TMDBError.guestSessionExpired
-                }
-                switch response.statusCode {
-                case 401, 403: throw TMDBError.unauthorized
-                case 404: throw TMDBError.notFound
-                case 400, 422: throw TMDBError.invalidRequest
-                case 429: throw TMDBError.tooManyRequests
-                default: throw TMDBError.unavailable
-                }
-            }
-            return try await JSONParser.decode(Response.self, from: data)
-        } catch let error as URLError {
-            if error.code == .cancelled { throw CancellationError() }
-            if error.code == .timedOut { throw TMDBError.timeout }
-            throw TMDBError.connection
-        } catch is DecodingError {
-            throw TMDBError.invalidResponse
-        }
+        return urlRequest
     }
 }
