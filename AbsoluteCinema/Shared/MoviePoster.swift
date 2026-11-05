@@ -3,7 +3,7 @@ import SwiftUI
 // Общее оформление постера для поиска, карточки и списка оценок
 struct MoviePoster: View {
     let name: String?
-    var posterPath: String? = nil
+    var posterPath: String?
     var pixelSize: CGFloat = 900
     @State private var viewModel = MoviePosterViewModel()
 

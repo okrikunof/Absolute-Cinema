@@ -1,0 +1,14 @@
+included:
+  - AbsoluteCinema
+  - AbsoluteCinemaTests
+  - AbsoluteCinemaUITests
+
+excluded:
+  - build
+  - DerivedData
+  - .build
+
+opt_in_rules:
+  - force_unwrapping
+
+reporter: xcode

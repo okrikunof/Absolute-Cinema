@@ -28,6 +28,11 @@ actor TMDBClient {
         return response.results.map { $0.movie(hasDetails: false) }
     }
 
+    func trendingMovies() async throws -> [Movie] {
+        let response: TMDBMovieListResponse = try await request(path: "trending/movie/week")
+        return response.results.prefix(10).map { $0.movie(hasDetails: false) }
+    }
+
     func movie(id: Int) async throws -> Movie {
         let response: TMDBMovieResponse = try await request(path: "movie/\(id)")
         guard response.id == id else { throw TMDBError.invalidResponse }

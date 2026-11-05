@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct MovieDetailsView: View {
+    @Environment(\.dismiss) private var dismiss
     @State private var viewModel: MovieDetailsViewModel
     @State private var showsRatingEditor = false
 
@@ -41,20 +42,29 @@ struct MovieDetailsView: View {
                 }
 
                 VStack(alignment: .leading, spacing: 12) {
-                    Button(viewModel.savedRating == nil ? "Оценить" : "Изменить оценку") {
-                        showsRatingEditor = true
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .foregroundStyle(Color("Background"))
-                    .disabled(!viewModel.canRate)
-                    .accessibilityIdentifier("details.editRating")
+                    HStack(spacing: 12) {
+                        Button {
+                            showsRatingEditor = true
+                        } label: {
+                            Label(viewModel.savedRating == nil ? "Оценить" : "Изменить",
+                                  systemImage: "star")
+                                .frame(maxWidth: .infinity, minHeight: 32)
+                        }
+                        .buttonStyle(.borderedProminent)
+                        .foregroundStyle(Color("Background"))
+                        .disabled(!viewModel.canRate)
+                        .accessibilityIdentifier("details.editRating")
 
-                    Button(action: viewModel.toggleWatchlist) {
-                        Label(viewModel.isWatchlisted ? "Убрать из желаемого" : "Хочу посмотреть",
-                              systemImage: viewModel.isWatchlisted ? "bookmark.fill" : "bookmark")
+                        Button(action: viewModel.toggleWatchlist) {
+                            Label(viewModel.isWatchlisted ? "В списке" : "Смотреть",
+                                  systemImage: viewModel.isWatchlisted ? "bookmark.fill" : "bookmark")
+                                .frame(maxWidth: .infinity, minHeight: 32)
+                        }
+                        .buttonStyle(.bordered)
+                        .disabled(!viewModel.canToggleWatchlist)
+                        .accessibilityLabel(viewModel.isWatchlisted ? "Убрать из желаемого" : "Хочу посмотреть")
+                        .accessibilityIdentifier("details.watchlist")
                     }
-                    .buttonStyle(.bordered)
-                    .disabled(!viewModel.canToggleWatchlist)
 
                     if !viewModel.canRate {
                         Text("Сохранение станет доступно после загрузки полной карточки.")
@@ -62,32 +72,31 @@ struct MovieDetailsView: View {
                     }
 
                     if let saved = viewModel.savedRating {
-                        Text("Моя оценка: \(saved.rating) из 10").font(.headline)
-                            .accessibilityIdentifier("details.savedRating")
-                        if !saved.comment.isEmpty {
-                            Text(saved.comment)
-                                .accessibilityIdentifier("details.savedComment")
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text("Моя оценка: \(saved.rating) из 10").font(.headline)
+                                .accessibilityIdentifier("details.savedRating")
+                            Text(saved.ratedAt.formatted(date: .abbreviated, time: .omitted))
+                                .font(.caption).foregroundStyle(Color("SecondaryText"))
                         }
-                        Text("Дата оценки: \(saved.ratedAt.formatted(date: .abbreviated, time: .shortened))")
-                            .font(.caption).foregroundStyle(Color("SecondaryText"))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(16)
+                        .background(Color("Surface"), in: RoundedRectangle(cornerRadius: 16))
+
                         Button(action: viewModel.sendSavedRating) {
                             HStack {
                                 if viewModel.isSendingRating { ProgressView() }
-                                Text(viewModel.isSendingRating ? "Отправляем оценку…" : "Отправить оценку в TMDB")
+                                Text(viewModel.isSendingRating ? "Отправляем…" : "Отправить в TMDB")
                             }
                         }
                         .buttonStyle(.bordered)
+                        .font(.subheadline)
                         .disabled(!viewModel.canSendRating)
-                        Text("В гостевую сессию TMDB отправляется только число. Комментарий остаётся на устройстве.")
-                            .font(.caption).foregroundStyle(Color("SecondaryText"))
                         if let message = viewModel.ratingSendError {
                             ErrorNotice(message: message, retry: viewModel.sendSavedRating)
                         }
                         if let message = viewModel.ratingSendMessage {
                             Text(message).font(.caption).foregroundStyle(Color("SecondaryText"))
                         }
-                        Button("Убрать оценку и комментарий", role: .destructive,
-                               action: viewModel.removeRating)
                     }
                     if let message = viewModel.saveMessage {
                         Text(message).font(.caption).foregroundStyle(Color("SecondaryText"))
@@ -109,6 +118,16 @@ struct MovieDetailsView: View {
         .scrollDismissesKeyboard(.interactively)
         .navigationTitle("Карточка фильма")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button(action: { dismiss() }) {
+                    Image(systemName: "chevron.left")
+                        .frame(minWidth: 44, minHeight: 44)
+                }
+                .accessibilityLabel("Назад")
+            }
+        }
         .onAppear {
             viewModel.loadRating()
             viewModel.loadWatchlist()

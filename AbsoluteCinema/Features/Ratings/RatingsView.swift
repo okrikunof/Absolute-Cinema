@@ -75,13 +75,18 @@ private struct RatedMovieRow: View {
 
             Spacer(minLength: 4)
 
-            VStack(spacing: 4) {
+            VStack(spacing: 12) {
                 Text("Моя оценка")
                     .font(.caption2)
                     .foregroundStyle(Color("SecondaryText"))
                 Text("\(entry.rating)")
-                    .font(.title2.bold())
-                    .foregroundStyle(Color.accentColor)
+                    .font(.headline.bold())
+                    .foregroundStyle(RatingColors.color(for: entry.rating))
+                    .frame(width: 36, height: 36)
+                    .background(RatingColors.color(for: entry.rating).opacity(0.16), in: Circle())
+                    .overlay {
+                        Circle().strokeBorder(RatingColors.color(for: entry.rating), lineWidth: 1)
+                    }
                 Text("из 10")
                     .font(.caption2)
                     .foregroundStyle(Color("SecondaryText"))

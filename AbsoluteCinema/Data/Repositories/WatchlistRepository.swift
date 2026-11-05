@@ -39,14 +39,6 @@ final class WatchlistRepository {
         try entry(for: movieID)?.movie
     }
 
-    func movies() throws -> [Movie] {
-        let descriptor = FetchDescriptor<WatchlistMovie>(sortBy: [
-            SortDescriptor(\WatchlistMovie.addedAt, order: .reverse),
-            SortDescriptor(\WatchlistMovie.movieID)
-        ])
-        return try context.fetch(descriptor).map(\.movie)
-    }
-
     func add(_ movie: Movie) throws {
         guard movie.hasDetails else { throw AppError.incompleteMovie }
         guard try !contains(movieID: movie.id) else { return }

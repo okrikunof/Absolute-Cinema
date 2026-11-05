@@ -1,6 +1,6 @@
 import Foundation
 
-struct Movie: Identifiable, Hashable, Sendable {
+struct Movie: Identifiable, Hashable, Sendable, Codable {
     let id: Int
     let title: String
     let originalTitle: String
@@ -11,7 +11,7 @@ struct Movie: Identifiable, Hashable, Sendable {
     let rating: Double
     let voteCount: Int
     let posterName: String?
-    var posterPath: String? = nil
+    var posterPath: String?
     // Сохранённые фильмы и моки содержат полную карточку; результаты поиска — нет.
     var hasDetails = true
 }

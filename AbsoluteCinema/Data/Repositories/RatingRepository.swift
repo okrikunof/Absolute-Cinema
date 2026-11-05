@@ -36,17 +36,6 @@ final class RatingRepository {
         try entry(for: movieID)?.snapshot
     }
 
-    // прочитать все оценки в выбранном порядке
-    func ratings(sortedBy order: RatingSortOrder) throws -> [SavedRating] {
-        var descriptors: [SortDescriptor<RatedMovie>] = []
-        if order == .highestFirst {
-            descriptors.append(SortDescriptor(\RatedMovie.userRating, order: .reverse))
-        }
-        descriptors += [SortDescriptor(\RatedMovie.ratedAt, order: .reverse),
-                        SortDescriptor(\RatedMovie.movieID)]
-        return try context.fetch(FetchDescriptor(sortBy: descriptors)).map(\.snapshot)
-    }
-
     // для одного фильма хранится только одна запись
     func save(movie: Movie, rating: Int, comment: String) throws -> SavedRating {
         guard (1...10).contains(rating) else { throw AppError.invalidRating }

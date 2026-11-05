@@ -13,11 +13,20 @@ final class SearchViewModel {
     private(set) var isLoading = false
     private(set) var hasSearched = false
     private(set) var errorMessage: String?
+    private(set) var recentMovies: [Movie]
+    private(set) var trendingMovies: [Movie] = []
+    private(set) var isLoadingTrending = false
+    private(set) var trendingError: String?
+    private var hasRequestedTrending = false
     @ObservationIgnored private var searchTask: Task<Void, Never>?
     private let client: TMDBClient
+    private let history: RecentMoviesStore
 
-    init(client: TMDBClient) {
+    init(client: TMDBClient, history: RecentMoviesStore? = nil) {
         self.client = client
+        let history = history ?? RecentMoviesStore()
+        self.history = history
+        recentMovies = history.load()
     }
 
     var canSearch: Bool {
@@ -43,9 +52,44 @@ final class SearchViewModel {
                 guard !Task.isCancelled else { return }
                 isLoading = false
                 errorMessage = (error as? TMDBError)?.errorDescription
-                    ?? "Не удалось загрузить фильмы. Попробуйте ещё раз."
+                    ?? "Не удалось загрузить фильмы. Попробуйте ещё раз"
             }
         }
+    }
+
+    func recordOpenedMovie(_ movie: Movie) {
+        recentMovies.removeAll { $0.id == movie.id }
+        recentMovies.insert(movie, at: 0)
+        recentMovies = Array(recentMovies.prefix(10))
+        history.save(recentMovies)
+    }
+
+    func clearRecentMovies() {
+        recentMovies = []
+        history.save([])
+    }
+
+    func loadTrending() {
+        guard !hasRequestedTrending else { return }
+        hasRequestedTrending = true
+        isLoadingTrending = true
+        trendingError = nil
+        // Загрузка принадлежит ViewModel и продолжается при переходе на другой экран.
+        Task {
+            defer { isLoadingTrending = false }
+            do {
+                trendingMovies = try await client.trendingMovies()
+            } catch {
+                trendingError = (error as? TMDBError)?.errorDescription
+                    ?? "Не удалось загрузить фильмы в тренде."
+            }
+        }
+    }
+
+    func retryTrending() {
+        guard !isLoadingTrending else { return }
+        hasRequestedTrending = false
+        loadTrending()
     }
 
     private func queryChanged() {

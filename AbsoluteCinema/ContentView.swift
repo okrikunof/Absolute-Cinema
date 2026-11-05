@@ -13,7 +13,7 @@ struct ContentView: View {
         self.repository = repository
         self.watchlist = watchlist
         self.client = client
-        _search = State(initialValue: SearchViewModel(client: client))
+        _search = State(initialValue: SearchViewModel(client: client, history: RecentMoviesStore()))
         _ratings = State(initialValue: RatingsViewModel(repository: repository,
                                                        settings: SettingsStore()))
         _wantedMovies = State(initialValue: WatchlistViewModel(repository: watchlist))
@@ -30,20 +30,20 @@ struct ContentView: View {
             .tabItem { Label("Поиск", systemImage: "magnifyingglass") }
 
             NavigationStack {
-                RatingsView(viewModel: ratings)
-                    .navigationDestination(for: Movie.self) { movie in
-                        details(movie: movie)
-                    }
-            }
-            .tabItem { Label("Мои оценки", systemImage: "star") }
-
-            NavigationStack {
                 WatchlistView(viewModel: wantedMovies)
                     .navigationDestination(for: Movie.self) { movie in
                         details(movie: movie)
                     }
             }
             .tabItem { Label("Хочу посмотреть", systemImage: "bookmark") }
+
+            NavigationStack {
+                RatingsView(viewModel: ratings)
+                    .navigationDestination(for: Movie.self) { movie in
+                        details(movie: movie)
+                    }
+            }
+            .tabItem { Label("Мои оценки", systemImage: "star") }
         }
         .toolbarBackground(Color("Surface"), for: .tabBar)
         .toolbarBackground(.visible, for: .tabBar)
@@ -53,5 +53,6 @@ struct ContentView: View {
         MovieDetailsView(viewModel: MovieDetailsViewModel(
             movie: movie, ratings: repository, watchlist: watchlist, client: client
         ))
+        .onAppear { search.recordOpenedMovie(movie) }
     }
 }
