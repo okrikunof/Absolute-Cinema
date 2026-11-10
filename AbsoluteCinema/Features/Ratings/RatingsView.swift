@@ -19,13 +19,10 @@ struct RatingsView: View {
             }
             .padding(.horizontal)
 
-            if viewModel.isLoading {
-                ProgressView("Загружаем список…").padding()
-            }
             if let message = viewModel.errorMessage {
                 ErrorNotice(message: message, retry: viewModel.reload)
             }
-            if viewModel.entries.isEmpty, viewModel.errorMessage == nil, !viewModel.isLoading {
+            if viewModel.entries.isEmpty, viewModel.errorMessage == nil {
                 ContentUnavailableView("Пока нет оценок", systemImage: "star",
                                        description: Text("Найдите фильм и сохраните свою оценку в его карточке."))
             } else {
@@ -47,7 +44,6 @@ struct RatingsView: View {
         .background(Color("Background"))
         .navigationTitle("Мои оценки")
         .onAppear { viewModel.reload() }
-        .onDisappear { viewModel.cancelLoading() }
         .onChange(of: viewModel.repositoryRevision) { _, _ in viewModel.reload() }
     }
 }

@@ -47,6 +47,9 @@ private final class UITestURLProtocol: URLProtocol, @unchecked Sendable {
     private static func response(for request: URLRequest) -> (Int, [String: Any]) {
         let components = request.url.flatMap { URLComponents(url: $0, resolvingAgainstBaseURL: false) }
         let path = request.url?.path ?? ""
+        if request.httpMethod == "GET", path == "/3/trending/movie/week" {
+            return (200, ["results": MockMovies.movies.map(movieJSON)])
+        }
         if request.httpMethod == "GET", path == "/3/search/movie" {
             let query = components?.queryItems?.first(where: { $0.name == "query" })?.value ?? ""
             let movies = MockMovies.movies.filter {

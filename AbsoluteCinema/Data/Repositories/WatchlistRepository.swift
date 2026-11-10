@@ -6,22 +6,19 @@ import SwiftData
 @Observable
 final class WatchlistRepository {
     private(set) var revision = 0
-    private let container: ModelContainer
     private let context: ModelContext
 
     init(container: ModelContainer) {
-        self.container = container
         context = ModelContext(container)
         context.autosaveEnabled = false
     }
 
-    func moviesInBackground() async throws -> [Movie] {
-        let container = container
-        // Создаём контекст вне MainActor, чтобы чтение не занимало поток интерфейса.
-        return try await Task.detached(priority: .userInitiated) {
-            let reader = SavedMoviesReader(modelContainer: container)
-            return try await reader.watchlist()
-        }.value
+    func movies() throws -> [Movie] {
+        let descriptor = FetchDescriptor<WatchlistMovie>(sortBy: [
+            SortDescriptor(\WatchlistMovie.addedAt, order: .reverse),
+            SortDescriptor(\WatchlistMovie.movieID)
+        ])
+        return try context.fetch(descriptor).map(\.movie)
     }
 
     private func entry(for movieID: Int) throws -> WatchlistMovie? {

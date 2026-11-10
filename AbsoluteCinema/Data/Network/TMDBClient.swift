@@ -104,8 +104,11 @@ actor TMDBClient {
         do {
             let (data, response) = try await session.data(for: urlRequest)
             try Task.checkCancellation()
-            try await validateResponse(response, data: data)
-            return try await JSONParser.decode(Response.self, from: data)
+            try validateResponse(response, data: data)
+            // Разбор выполняется внутри actor клиента, отдельно от MainActor интерфейса.
+            let decoded = try JSONDecoder().decode(Response.self, from: data)
+            try Task.checkCancellation()
+            return decoded
         } catch let error as URLError {
             if error.code == .cancelled { throw CancellationError() }
             if error.code == .timedOut { throw TMDBError.timeout }
@@ -115,12 +118,12 @@ actor TMDBClient {
         }
     }
 
-    private func validateResponse(_ response: URLResponse, data: Data) async throws {
+    private func validateResponse(_ response: URLResponse, data: Data) throws {
         guard let response = response as? HTTPURLResponse else {
             throw TMDBError.invalidResponse
         }
         if !(200..<300).contains(response.statusCode) {
-            let failure = try? await JSONParser.decode(TMDBStatusResponse.self, from: data)
+            let failure = try? JSONDecoder().decode(TMDBStatusResponse.self, from: data)
             try Task.checkCancellation()
             if let failure, [17, 37].contains(failure.statusCode) {
                 throw TMDBError.guestSessionExpired

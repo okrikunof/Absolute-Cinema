@@ -5,13 +5,10 @@ struct WatchlistView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            if viewModel.isLoading {
-                ProgressView("Загружаем список…").padding()
-            }
             if let message = viewModel.errorMessage {
                 ErrorNotice(message: message, retry: viewModel.reload)
             }
-            if viewModel.movies.isEmpty, viewModel.errorMessage == nil, !viewModel.isLoading {
+            if viewModel.movies.isEmpty, viewModel.errorMessage == nil {
                 ContentUnavailableView("Список пока пуст", systemImage: "bookmark",
                                        description: Text("Добавьте фильм через кнопку «Хочу посмотреть» в карточке."))
             } else {
@@ -32,7 +29,6 @@ struct WatchlistView: View {
         .background(Color("Background"))
         .navigationTitle("Хочу посмотреть")
         .onAppear { viewModel.reload() }
-        .onDisappear { viewModel.cancelLoading() }
         .onChange(of: viewModel.repositoryRevision) { _, _ in viewModel.reload() }
     }
 }

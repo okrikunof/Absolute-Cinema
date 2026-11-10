@@ -22,9 +22,8 @@ final class SearchViewModel {
     private let client: TMDBClient
     private let history: RecentMoviesStore
 
-    init(client: TMDBClient, history: RecentMoviesStore? = nil) {
+    init(client: TMDBClient, history: RecentMoviesStore) {
         self.client = client
-        let history = history ?? RecentMoviesStore()
         self.history = history
         recentMovies = history.load()
     }

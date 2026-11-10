@@ -52,9 +52,10 @@ final class AbsoluteCinemaUITests: XCTestCase {
         // После отмены сохранённые значения должны остаться прежними.
         assertSavedRating(8, comment: "Matrix baseline", in: app)
         tap(app.buttons["details.editRating"], in: app)
-        let picker = app.buttons["rating.value"]
-        XCTAssertTrue(picker.waitForExistence(timeout: 5))
-        XCTAssertEqual(picker.value as? String, "8 из 10")
+        let savedRating = app.buttons["rating.value.8"]
+        XCTAssertTrue(savedRating.waitForExistence(timeout: 5))
+        XCTAssertTrue(savedRating.isSelected)
+        XCTAssertFalse(app.buttons["rating.value.5"].isSelected)
         XCTAssertEqual(app.textViews["rating.comment"].value as? String, "Matrix baseline")
         XCTAssertFalse(app.buttons["rating.save"].isEnabled)
     }
@@ -69,9 +70,9 @@ final class AbsoluteCinemaUITests: XCTestCase {
 
     @MainActor
     private func chooseRating(_ rating: Int, in app: XCUIApplication) {
-        tap(app.buttons["rating.value"], in: app)
-        tap(app.buttons["\(rating) из 10"], in: app)
-        XCTAssertEqual(app.buttons["rating.value"].value as? String, "\(rating) из 10")
+        let button = app.buttons["rating.value.\(rating)"]
+        tap(button, in: app)
+        XCTAssertTrue(button.isSelected)
     }
 
     @MainActor

@@ -9,13 +9,13 @@ struct ContentView: View {
     @State private var ratings: RatingsViewModel
     @State private var wantedMovies: WatchlistViewModel
 
-    init(repository: RatingRepository, watchlist: WatchlistRepository, client: TMDBClient) {
+    init(repository: RatingRepository, watchlist: WatchlistRepository, client: TMDBClient,
+         settings: SettingsStore, history: RecentMoviesStore) {
         self.repository = repository
         self.watchlist = watchlist
         self.client = client
-        _search = State(initialValue: SearchViewModel(client: client, history: RecentMoviesStore()))
-        _ratings = State(initialValue: RatingsViewModel(repository: repository,
-                                                       settings: SettingsStore()))
+        _search = State(initialValue: SearchViewModel(client: client, history: history))
+        _ratings = State(initialValue: RatingsViewModel(repository: repository, settings: settings))
         _wantedMovies = State(initialValue: WatchlistViewModel(repository: watchlist))
     }
 

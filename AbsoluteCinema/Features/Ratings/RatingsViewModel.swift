@@ -6,8 +6,6 @@ import Observation
 final class RatingsViewModel {
     private(set) var entries: [SavedRating] = []
     var errorMessage: String?
-    private(set) var isLoading = false
-    @ObservationIgnored private var loadTask: Task<Void, Never>?
     private let settings: SettingsStore
     private let repository: RatingRepository
 
@@ -21,29 +19,12 @@ final class RatingsViewModel {
     var sortOrder: RatingSortOrder { settings.sortOrder }
 
     func reload() {
-        loadTask?.cancel()
-        isLoading = true
         errorMessage = nil
-        let order = settings.sortOrder
-        loadTask = Task {
-            do {
-                let loaded = try await repository.ratingsInBackground(sortedBy: order)
-                // Предыдущая загрузка не должна заменять результат новой сортировки
-                try Task.checkCancellation()
-                entries = loaded
-                isLoading = false
-            } catch {
-                guard !Task.isCancelled else { return }
-                isLoading = false
-                errorMessage = "Не удалось прочитать сохранённые фильмы. Повторите загрузку."
-            }
+        do {
+            entries = try repository.ratings(sortedBy: settings.sortOrder)
+        } catch {
+            errorMessage = "Не удалось прочитать сохранённые фильмы. Повторите загрузку."
         }
-    }
-
-    func cancelLoading() {
-        loadTask?.cancel()
-        loadTask = nil
-        isLoading = false
     }
 
     func setSortOrder(_ order: RatingSortOrder) {
