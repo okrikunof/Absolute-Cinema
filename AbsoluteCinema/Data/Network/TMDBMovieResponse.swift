@@ -4,7 +4,7 @@ struct TMDBMovieListResponse: Decodable, Sendable {
     let results: [TMDBMovieResponse]
 }
 
-// Список и карточка имеют общие поля. runtime и genres приходят только в карточке.
+// В поисковой выдаче нет runtime и genres, они приходят с подробностями фильма
 struct TMDBMovieResponse: Decodable, Sendable {
     let id: Int
     let title: String

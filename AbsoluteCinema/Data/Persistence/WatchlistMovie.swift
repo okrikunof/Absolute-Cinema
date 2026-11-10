@@ -31,7 +31,7 @@ final class WatchlistMovie {
         addedAt = Date()
     }
 
-    // Список хранит и описание, чтобы карточка открывалась без исходного массива моков.
+    // Сохраняем сведения о фильме, чтобы открывать карточку без сети
     var movie: Movie {
         Movie(id: movieID, title: title, originalTitle: originalTitle,
               year: year, runtime: runtime, overview: overview, genres: genres,

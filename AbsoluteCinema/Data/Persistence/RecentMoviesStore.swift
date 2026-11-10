@@ -1,6 +1,6 @@
 import Foundation
 
-// Храним только десять последних открытых карточек, без оценок и комментариев.
+// Порядок истории и лимит в десять фильмов задаёт SearchViewModel
 final class RecentMoviesStore {
     private let defaults: UserDefaults
     private let key = "dev.search.recentMovies"

@@ -112,7 +112,7 @@ final class MovieDetailsViewModel {
     }
 
     func loadRating() {
-        // повторное обновление не должно стирать ещё не сохранённый комментарий
+        // Не затираем черновик при повторном чтении оценки
         if didLoadRating && hasChanges { return }
         do {
             let previousRating = savedRating?.rating
@@ -121,7 +121,7 @@ final class MovieDetailsViewModel {
                 ratingSendError = nil
                 ratingSendMessage = nil
             }
-            // Если сеть недоступна, сохранённый снимок заменит краткий результат поиска.
+            // Сохранённые сведения позволяют работать с фильмом и без ответа сети
             if !movie.hasDetails, let savedRating {
                 movie = savedRating.movie
             }

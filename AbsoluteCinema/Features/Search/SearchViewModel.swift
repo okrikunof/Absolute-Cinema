@@ -43,7 +43,7 @@ final class SearchViewModel {
         searchTask = Task {
             do {
                 let loaded = try await client.searchMovies(query: text)
-                // Отменённый запрос не должен заменять результаты нового поиска.
+                // Не даём старому ответу заменить результаты нового поиска
                 try Task.checkCancellation()
                 movies = loaded
                 isLoading = false
@@ -73,7 +73,7 @@ final class SearchViewModel {
         hasRequestedTrending = true
         isLoadingTrending = true
         trendingError = nil
-        // Загрузка принадлежит ViewModel и продолжается при переходе на другой экран.
+        // Тренды продолжают загружаться, даже если пользователь открыл карточку
         Task {
             defer { isLoadingTrending = false }
             do {

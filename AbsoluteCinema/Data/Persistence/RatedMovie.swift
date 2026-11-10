@@ -35,7 +35,6 @@ final class RatedMovie {
         self.ratedAt = ratedAt
     }
 
-    // для экрана возвращаем обычную структуру
     var snapshot: SavedRating {
         SavedRating(
             movie: Movie(

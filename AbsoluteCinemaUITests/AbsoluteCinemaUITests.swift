@@ -5,14 +5,12 @@ final class AbsoluteCinemaUITests: XCTestCase {
     func testSearchAndSaveRatingWithComment() {
         let app = launchApp()
 
-        // поиск использует заданный ответ, база заново создаётся в памяти
         let query = app.textFields["search.query"]
         XCTAssertTrue(query.waitForExistence(timeout: 10))
         query.tap()
         query.typeText("Odyssey")
         tap(app.buttons["search.submit"], in: app)
 
-        // открываем найденный фильм и сохраняем личные данные через форму
         tap(app.buttons["search.result.62"], in: app)
         tap(app.buttons["details.editRating"], in: app)
         chooseRating(8, in: app)
@@ -22,7 +20,6 @@ final class AbsoluteCinemaUITests: XCTestCase {
         comment.typeText("Great movie")
         tap(app.buttons["rating.save"], in: app)
 
-        // проверяем результат в карточке и повторное чтение через список
         assertSavedRating(8, comment: "Great movie", in: app)
         app.tabBars.buttons["Мои оценки"].tap()
         tap(app.buttons["ratings.movie.62"], in: app)
@@ -37,19 +34,17 @@ final class AbsoluteCinemaUITests: XCTestCase {
         assertSavedRating(8, comment: "Matrix baseline", in: app)
         tap(app.buttons["details.editRating"], in: app)
 
-        // Меняем оба поля черновика, но не нажимаем сохранение.
         chooseRating(5, in: app)
         let comment = app.textViews["rating.comment"]
         XCTAssertTrue(comment.waitForExistence(timeout: 5))
         comment.tap()
         let oldText = comment.value as? String ?? ""
-        // Для отмены достаточно изменить текст независимо от положения курсора.
+        // Дописываем текст без очистки поля, чтобы тест не зависел от положения курсора
         comment.typeText("Unsaved changes")
         XCTAssertNotEqual(comment.value as? String, oldText)
         XCTAssertTrue((comment.value as? String ?? "").contains("Unsaved changes"))
         tap(app.buttons["rating.cancel"], in: app)
 
-        // После отмены сохранённые значения должны остаться прежними.
         assertSavedRating(8, comment: "Matrix baseline", in: app)
         tap(app.buttons["details.editRating"], in: app)
         let savedRating = app.buttons["rating.value.8"]
@@ -91,7 +86,7 @@ final class AbsoluteCinemaUITests: XCTestCase {
     @MainActor
     private func tap(_ element: XCUIElement, in app: XCUIApplication) {
         XCTAssertTrue(element.waitForExistence(timeout: 5), "Не найден элемент: \(element)")
-        // Кнопки формы могут находиться ниже клавиатуры или края экрана.
+        // Прокручиваем форму, если кнопку закрывает клавиатура или она за краем экрана
         for _ in 0..<5 {
             if element.isHittable { break }
             let form = app.collectionViews.firstMatch

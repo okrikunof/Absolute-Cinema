@@ -16,7 +16,7 @@ struct TMDBRatingRequest: Encodable, Sendable {
     let value: Int
 }
 
-// Этот ответ используется и для результата POST, и для ошибок сервиса.
+// Общий формат результата отправки оценки и ошибок TMDB
 struct TMDBStatusResponse: Decodable, Sendable {
     let success: Bool?
     let statusCode: Int

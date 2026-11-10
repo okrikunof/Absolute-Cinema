@@ -1,6 +1,5 @@
 import SwiftUI
 
-// Здесь находятся вкладки и переход в карточку фильма.
 struct ContentView: View {
     let repository: RatingRepository
     let watchlist: WatchlistRepository

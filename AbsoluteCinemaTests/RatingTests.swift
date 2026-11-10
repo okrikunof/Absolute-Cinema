@@ -8,7 +8,7 @@ final class RatingTests: XCTestCase {
         let container = try makeContainer()
         let movie = try XCTUnwrap(MockMovies.movies.first)
         let originalDate = Date(timeIntervalSince1970: 1_000)
-        // Фиксированная дата позволяет заметить её случайную замену текущей датой.
+        // Берём старую дату, чтобы заметить её случайное обновление при сохранении
         let context = ModelContext(container)
         context.insert(RatedMovie(movie: movie, rating: 8, comment: "Первый отзыв", ratedAt: originalDate))
         try context.save()
@@ -16,7 +16,7 @@ final class RatingTests: XCTestCase {
         let repository = RatingRepository(container: container)
         _ = try repository.save(movie: movie, rating: 8, comment: "Уточнённый отзыв")
 
-        // Новый контекст читает сохранённую запись, а не только состояние репозитория.
+        // Читаем через другой контекст, чтобы проверить сохранение в базу
         let reader = ModelContext(container)
         let entries = try reader.fetch(FetchDescriptor<RatedMovie>())
         XCTAssertEqual(entries.count, 1)
@@ -77,7 +77,7 @@ final class RatingTests: XCTestCase {
         viewModel.comment = "Несохранённый отзыв"
         XCTAssertTrue(viewModel.canSave)
 
-        // Обновление карточки во время редактирования не должно стирать ввод.
+        // Повторное чтение не должно затирать черновик
         viewModel.loadRating()
         XCTAssertEqual(viewModel.draftRating, 5)
         XCTAssertEqual(viewModel.comment, "Несохранённый отзыв")

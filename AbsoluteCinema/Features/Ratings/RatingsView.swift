@@ -48,7 +48,6 @@ struct RatingsView: View {
     }
 }
 
-// Комментарий хранится и редактируется в карточке, но не показывается в строке.
 private struct RatedMovieRow: View {
     let entry: SavedRating
 

@@ -1,6 +1,5 @@
 import Foundation
 
-// Actor выполняет обработку ответов отдельно от состояния интерфейса на MainActor.
 actor TMDBClient {
     private let session: URLSession
     private let configurationOverride: TMDBConfiguration?
@@ -50,7 +49,7 @@ actor TMDBClient {
                 queryItems: [URLQueryItem(name: "guest_session_id", value: guestID)],
                 body: body
             )
-            // Даже HTTP 200 не означает успех: проверяем результат из JSON.
+            // TMDB может вернуть ошибку в JSON даже при HTTP 200
             guard response.success != false else { throw ratingError(statusCode: response.statusCode) }
             switch response.statusCode {
             case 1: return .saved
@@ -81,7 +80,7 @@ actor TMDBClient {
         guard let date = formatter.date(from: expiresAt), date > Date() else {
             throw TMDBError.guestSession
         }
-        // Сессия хранится только в памяти; после перезапуска создаётся новая.
+        // После перезапуска приложения создаём новую гостевую сессию
         guestSession = (id, date)
         return id
     }
@@ -105,7 +104,7 @@ actor TMDBClient {
             let (data, response) = try await session.data(for: urlRequest)
             try Task.checkCancellation()
             try validateResponse(response, data: data)
-            // Разбор выполняется внутри actor клиента, отдельно от MainActor интерфейса.
+            // Разбираем JSON в actor клиента, чтобы не занимать главный поток
             let decoded = try JSONDecoder().decode(Response.self, from: data)
             try Task.checkCancellation()
             return decoded

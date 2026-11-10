@@ -30,19 +30,17 @@ final class RatingRepository {
         return try context.fetch(descriptor).first
     }
 
-    // найти одну сохранённую оценку по ID фильма
     func rating(for movieID: Int) throws -> SavedRating? {
         try entry(for: movieID)?.snapshot
     }
 
-    // для одного фильма хранится только одна запись
     func save(movie: Movie, rating: Int, comment: String) throws -> SavedRating {
         guard (1...10).contains(rating) else { throw AppError.invalidRating }
         guard movie.hasDetails else { throw AppError.incompleteMovie }
         let entry: RatedMovie
         if let existing = try self.entry(for: movie.id) {
             entry = existing
-            // изменение только комментария не меняет дату выставления оценки
+            // Правка комментария не должна менять дату оценки
             if existing.userRating != rating {
                 existing.ratedAt = Date()
             }
@@ -57,7 +55,6 @@ final class RatingRepository {
         return entry.snapshot
     }
 
-    // удалить запись с оценкой и комментарием.
     func remove(movieID: Int) throws {
         guard let entry = try entry(for: movieID) else { return }
         context.delete(entry)

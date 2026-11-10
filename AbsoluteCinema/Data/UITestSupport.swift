@@ -1,7 +1,7 @@
 #if DEBUG
 import Foundation
 
-// Включается только аргументом UI-тестов. Личная база и настоящий API не используются.
+// В режиме --ui-testing подставляем ответы API и используем базу в памяти
 enum UITestSupport {
     static func makeClient() -> TMDBClient {
         let configuration = URLSessionConfiguration.ephemeral

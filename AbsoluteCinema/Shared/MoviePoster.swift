@@ -1,6 +1,5 @@
 import SwiftUI
 
-// Общее оформление постера для поиска, карточки и списка оценок
 struct MoviePoster: View {
     let name: String?
     var posterPath: String?
@@ -20,7 +19,6 @@ struct MoviePoster: View {
                     .resizable()
                     .scaledToFit()
             } else {
-                // Заглушка остаётся и при отсутствии постера, и при ошибке загрузки.
                 ZStack {
                     Color("Surface")
                     Image(systemName: "film")

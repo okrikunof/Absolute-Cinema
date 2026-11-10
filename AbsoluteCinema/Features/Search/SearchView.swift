@@ -114,7 +114,6 @@ struct SearchView: View {
         .scrollDismissesKeyboard(.interactively)
     }
 
-    // Одинаковые карточки для трендов и истории открытых фильмов.
     private func movieCarousel(_ movies: [Movie]) -> some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHStack(alignment: .top, spacing: 12) {

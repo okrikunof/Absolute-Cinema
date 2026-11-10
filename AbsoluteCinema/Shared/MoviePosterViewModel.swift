@@ -20,7 +20,7 @@ final class MoviePosterViewModel {
                         original = UIImage(data: data)
                     }
                 } catch {
-                    // Ошибка постера не мешает читать карточку и сохранять оценку.
+                    // При ошибке попробуем локальный постер или оставим заглушку
                 }
             }
         }

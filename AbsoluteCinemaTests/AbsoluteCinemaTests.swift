@@ -5,7 +5,6 @@ final class SearchViewModelTests: XCTestCase {
     @MainActor
     func testBlankQueryDoesNotStartSearch() {
         let viewModel = SearchViewModel(client: TMDBClient(), history: RecentMoviesStore())
-        // Пустой ввод не должен запускать загрузку или показывать результаты.
         for query in ["", "   ", "\n\t"] {
             viewModel.query = query
             XCTAssertFalse(viewModel.canSearch)
